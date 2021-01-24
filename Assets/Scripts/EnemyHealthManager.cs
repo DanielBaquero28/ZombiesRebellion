@@ -58,6 +58,7 @@ public class EnemyHealthManager : MonoBehaviour
         anim.SetBool("playerFound", false);
         anim.SetBool("zombieAttack", false);
         navMeshAgent.isStopped = true;
+        //navMeshAgent.baseOffset = -0.8f;
         //zombieDead = true;
         //Destroy(gameObject.GetComponent<NavMeshAgent>());
         //gameObject.SetActive(false);
