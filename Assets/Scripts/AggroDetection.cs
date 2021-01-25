@@ -15,7 +15,7 @@ public class AggroDetection : MonoBehaviour
         if (player != null)
         {
             OnAggro(player.transform);
-            Debug.Log("Aggrod");
+            //Debug.Log("Aggrod");
         }
     }
 
@@ -26,7 +26,7 @@ public class AggroDetection : MonoBehaviour
         if (player != null)
         {
             //OnExitAggro();
-            Debug.Log("Player Exited");
+            //Debug.Log("Player Exited");
         }
     }
 

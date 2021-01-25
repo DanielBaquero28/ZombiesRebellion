@@ -45,8 +45,9 @@ public class EnemyMovement : MonoBehaviour
     {
         if (target != null)
         {
+            navMeshAgent.enabled = true;
             anim.SetBool("playerFound", playerFound);
-            Debug.Log("playerFound Parameter State: " + anim.GetBool("playerFound"));
+            //Debug.Log("playerFound Parameter State: " + anim.GetBool("playerFound"));
             //if (zombieHit)
             //{
                 //anim.SetBool("zombieHit", zombieHit);
@@ -55,20 +56,23 @@ public class EnemyMovement : MonoBehaviour
             //Debug.Log("Enemy Health Manager: " + enemyHealthManager.zombieDead);
             navMeshAgent.SetDestination(target.position);
 
-            Debug.Log("Remaining Distance = " + navMeshAgent.remainingDistance);
-            if (navMeshAgent.remainingDistance <= 1.1f)
-            {
-                anim.SetBool("zombieAttack", true);
-                //navMeshAgent.isStopped = true;
-                //Debug.Log("NavMesh Agent is Stopped");
-            }
-            else
-            {
-                //navMeshAgent.isStopped = false;
-                anim.SetBool("zombieAttack", false);
-            }
+            //Debug.Log("Remaining Distance = " + navMeshAgent.remainingDistance);
             //float speed = navMeshAgent.velocity.magnitude;
             
+        }
+
+        if (navMeshAgent.remainingDistance <= 1.6f)
+        {
+            anim.SetBool("zombieAttack", true);
+            anim.SetBool("playerFound", false);
+            //navMeshAgent.isStopped = true;
+            //Debug.Log("NavMesh Agent is Stopped");
+        }
+        else
+        {
+            //navMeshAgent.isStopped = false;
+            anim.SetBool("playerFound", true);
+            anim.SetBool("zombieAttack", false);
         }
     }
 }
