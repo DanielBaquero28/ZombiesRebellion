@@ -65,8 +65,8 @@ public class WeaponManager : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, 5000) && hitInfo.collider.gameObject.CompareTag("ZombieBodyPart"))
         {
             GameObject subGameObject = hitInfo.collider.gameObject;
-            Debug.Log("SubGameObject 1 Name: " + subGameObject.name);
-            Debug.Log("SubGameObject Root Name: " + subGameObject.transform.root.gameObject);
+            //Debug.Log("SubGameObject 1 Name: " + subGameObject.name);
+            //Debug.Log("SubGameObject Root Name: " + subGameObject.transform.root.gameObject);
             GameObject zombieRoot = subGameObject.transform.root.gameObject;
             var impactEffect = Instantiate(zombieDecal, hitInfo.point, Quaternion.FromToRotation(Vector3.forward, hitInfo.normal));
             impactEffect.transform.parent = zombieRoot.transform;
@@ -77,13 +77,11 @@ public class WeaponManager : MonoBehaviour
                 {
                     health.TakeDamage(gunDamage, 1);
                     Destroy(impactEffect, 0.5f);
-                    Debug.Log("Llego acá");
                 }
                 else
                 {
                     health.TakeDamage(gunDamage, 0);
                     Destroy(impactEffect, 0.5f);
-                    Debug.Log("Llego acá");
                 }
             }
         }

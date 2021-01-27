@@ -33,7 +33,6 @@ public class EnemyMovement : MonoBehaviour
     //private void AggroDetection_OnExitAggro()
     //{
         //playerFound = false;
-        //navMeshAgent.isStopped = true;
     //}
 
     //private void WeaponManager_HitEnemy()
@@ -63,19 +62,19 @@ public class EnemyMovement : MonoBehaviour
         }
 
         if (ZombieHitDetection.playerDead == false)
+
         {
             if (navMeshAgent.remainingDistance <= 1.6f)
             {
                 anim.SetBool("zombieAttack", true);
                 anim.SetBool("playerFound", false);
-                //navMeshAgent.isStopped = true;
-                //Debug.Log("NavMesh Agent is Stopped");
             }
             else
             {
-                //navMeshAgent.isStopped = false;
+                navMeshAgent.isStopped = false;
                 anim.SetBool("playerFound", true);
                 anim.SetBool("zombieAttack", false);
+                Debug.Log("Reanudó: " + navMeshAgent.isStopped);
             }
         }
     }

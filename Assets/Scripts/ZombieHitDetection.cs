@@ -12,35 +12,49 @@ public class ZombieHitDetection : MonoBehaviour
 
     NavMeshAgent navMeshAgent;
 
-    [SerializeField]
-    GameObject gunPrefab;
+    //[SerializeField]
+    //GameObject gunPrefab;
 
     GameObject zombieRoot;
 
-    WeaponManager weaponManager;
+    //WeaponManager weaponManager;
 
     public static bool playerDead = false;
-
-    [SerializeField]
-    public Image img;
 
 
     private void OnTriggerEnter(Collider other)
     {
-        img.enabled = true;
-        StartCoroutine(FadeImage(true));
         zombieRoot = gameObject.transform.root.gameObject;
         anim = zombieRoot.GetComponent<Animator>();
         navMeshAgent = zombieRoot.GetComponent<NavMeshAgent>();
-        weaponManager = gunPrefab.GetComponent<WeaponManager>();
+        //weaponManager = gunPrefab.GetComponent<WeaponManager>();
         //Debug.Log("Weapon Manager: " + weaponManager);
         var player = other.GetComponent<PlayerVoid>();
+        Debug.Log("TriggerEnter()");
 
         if (player != null)
         {
+            var tmp = player.gameObject.transform.GetChild(0).gameObject;
+            //Debug.Log("Tmp Name: " + tmp.name);
+            tmp.SetActive(true);
             TakeDamage(20);
+            Debug.Log(tmp.name);
+            Debug.Log(tmp.transform.GetChild(0).gameObject.GetComponent<Image>());
+            StartCoroutine(FadeImage(tmp.transform.GetChild(0).gameObject));
         }
     }
+
+    IEnumerator FadeImage(GameObject image)
+    {
+        Image img = image.GetComponent<Image>();
+        for (float i = 0.6f; i >= 0; i -= Time.deltaTime)
+        {
+            img.color = new Color(1, 1, 1, i);
+            yield return null;
+        }
+    }
+
+
 
     private void TakeDamage(int damage)
     {
@@ -51,7 +65,8 @@ public class ZombieHitDetection : MonoBehaviour
         }
         else
         {
-            Debug.Log("Tiene " + playerHealth + " de vida");
+            //img.enabled = true;
+            //Debug.Log("Tiene " + playerHealth + " de vida");
             //Parte de UI de Sangre
         }
     }
@@ -61,34 +76,21 @@ public class ZombieHitDetection : MonoBehaviour
         playerDead = true;
         Debug.Log("Player Murio");
         navMeshAgent.isStopped = true;
-        weaponManager.enabled = false;
+        //weaponManager.enabled = false;
         anim.SetBool("idle", true);
         anim.SetBool("playerFound", false);
         anim.SetBool("zombieAttack", false);
     }
 
-    IEnumerator FadeImage(bool fadeAway)
-    {
-        if (fadeAway)
-        {
-            for (float i = 1; i >= 0; i -= Time.deltaTime)
-            {
-                img.color = new Color(1, 1, 1, i);
-                yield return null;
-            }
-        }
-        else
-        {
-            for (float i = 0; i <= 1; i += Time.deltaTime)
-            {
-                img.color = new Color(1, 1, 1, i);
-                yield return null;
-            }
-        }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        //TESTING;
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+        //var player = other.GetComponent<PlayerVoid>();
+
+        //if (player != null)
+        //{
+            //var tmp = player.gameObject.transform.GetChild(0).gameObject;
+            //tmp.SetActive(false);
+        //}
+    //}
 }

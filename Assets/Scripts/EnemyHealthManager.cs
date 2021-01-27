@@ -53,21 +53,18 @@ public class EnemyHealthManager : MonoBehaviour
 
     private void HitZombie()
     {
+        navMeshAgent.isStopped = true;
         anim.SetTrigger("zombieHit");
+        Debug.Log("HitZombie: " + navMeshAgent.isStopped);
     }
 
     public void Die()
     {
         anim.SetTrigger("isDead");
-        Debug.Log("Zombie Muerto");
         navMeshAgent.isStopped = true;
         deadSound.Play();
         anim.SetBool("playerFound", false);
         anim.SetBool("zombieAttack", false);
-        //navMeshAgent.baseOffset = -0.8f;
-        //zombieDead = true;
-        //Destroy(gameObject.GetComponent<NavMeshAgent>());
-        //gameObject.SetActive(false);
         Destroy(gameObject, 10f);
     }
 
