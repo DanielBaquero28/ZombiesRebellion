@@ -13,11 +13,14 @@ public class EnemyHealthManager : MonoBehaviour
 
     NavMeshAgent navMeshAgent;
 
+    AudioSource deadSound;
+
     public static bool zombieDead = false;
 
 
     private void Start()
     {
+        deadSound = GetComponent<AudioSource>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         anim = gameObject.GetComponent<Animator>();
     }
@@ -55,9 +58,10 @@ public class EnemyHealthManager : MonoBehaviour
 
     public void Die()
     {
-        navMeshAgent.isStopped = true;
-        //Invoke("disablem")
         anim.SetTrigger("isDead");
+        Debug.Log("Zombie Muerto");
+        navMeshAgent.isStopped = true;
+        deadSound.Play();
         anim.SetBool("playerFound", false);
         anim.SetBool("zombieAttack", false);
         //navMeshAgent.baseOffset = -0.8f;

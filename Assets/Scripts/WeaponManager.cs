@@ -62,7 +62,7 @@ public class WeaponManager : MonoBehaviour
         Ray ray = new Ray(muzzlePoint.position, muzzlePoint.forward);
         RaycastHit hitInfo;
 
-        if (Physics.Raycast(ray, out hitInfo, 200) && hitInfo.collider.gameObject.CompareTag("ZombieBodyPart"))
+        if (Physics.Raycast(ray, out hitInfo, 5000) && hitInfo.collider.gameObject.CompareTag("ZombieBodyPart"))
         {
             GameObject subGameObject = hitInfo.collider.gameObject;
             Debug.Log("SubGameObject 1 Name: " + subGameObject.name);
@@ -77,11 +77,13 @@ public class WeaponManager : MonoBehaviour
                 {
                     health.TakeDamage(gunDamage, 1);
                     Destroy(impactEffect, 0.5f);
+                    Debug.Log("Llego acá");
                 }
                 else
                 {
                     health.TakeDamage(gunDamage, 0);
                     Destroy(impactEffect, 0.5f);
+                    Debug.Log("Llego acá");
                 }
             }
         }
