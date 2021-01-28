@@ -62,19 +62,18 @@ public class EnemyMovement : MonoBehaviour
         }
 
         if (ZombieHitDetection.playerDead == false)
-
         {
-            if (navMeshAgent.remainingDistance <= 1.6f)
+            if (navMeshAgent.remainingDistance <= 1.4f)
             {
                 anim.SetBool("zombieAttack", true);
                 anim.SetBool("playerFound", false);
             }
             else
             {
-                navMeshAgent.isStopped = false;
+                //navMeshAgent.isStopped = false;
                 anim.SetBool("playerFound", true);
                 anim.SetBool("zombieAttack", false);
-                Debug.Log("Reanudó: " + navMeshAgent.isStopped);
+                //Debug.Log("Reanudó: " + navMeshAgent.isStopped);
             }
         }
     }

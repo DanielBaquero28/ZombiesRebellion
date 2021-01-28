@@ -61,27 +61,32 @@ public class WeaponManager : MonoBehaviour
         Debug.DrawRay(muzzlePoint.position, muzzlePoint.forward * 10, Color.red, 15f);
         Ray ray = new Ray(muzzlePoint.position, muzzlePoint.forward);
         RaycastHit hitInfo;
-
-        if (Physics.Raycast(ray, out hitInfo, 5000) && hitInfo.collider.gameObject.CompareTag("ZombieBodyPart"))
+        if (ZombieHitDetection.playerDead == false)
         {
-            GameObject subGameObject = hitInfo.collider.gameObject;
-            //Debug.Log("SubGameObject 1 Name: " + subGameObject.name);
-            //Debug.Log("SubGameObject Root Name: " + subGameObject.transform.root.gameObject);
-            GameObject zombieRoot = subGameObject.transform.root.gameObject;
-            var impactEffect = Instantiate(zombieDecal, hitInfo.point, Quaternion.FromToRotation(Vector3.forward, hitInfo.normal));
-            impactEffect.transform.parent = zombieRoot.transform;
-            var health = zombieRoot.GetComponent<EnemyHealthManager>();
-            if (health != null)
+            if (Physics.Raycast(ray, out hitInfo, 5000) && hitInfo.collider.gameObject.CompareTag("ZombieBodyPart"))
             {
-                if (subGameObject.name == "HeadCollider")
+                GameObject subGameObject = hitInfo.collider.gameObject;
+                //Debug.Log("SubGameObject 1 Name: " + subGameObject.name);
+                //Debug.Log("SubGameObject Root Name: " + subGameObject.transform.root.gameObject);
+                GameObject zombieRoot = subGameObject.transform.root.gameObject;
+                if (zombieRoot.tag != "IsDead")
                 {
-                    health.TakeDamage(gunDamage, 1);
-                    Destroy(impactEffect, 0.5f);
-                }
-                else
-                {
-                    health.TakeDamage(gunDamage, 0);
-                    Destroy(impactEffect, 0.5f);
+                    var impactEffect = Instantiate(zombieDecal, hitInfo.point, Quaternion.FromToRotation(Vector3.forward, hitInfo.normal));
+                    impactEffect.transform.parent = zombieRoot.transform;
+                    var health = zombieRoot.GetComponent<EnemyHealthManager>();
+                    if (health != null)
+                    {
+                        if (subGameObject.name == "HeadCollider")
+                        {
+                            health.TakeDamage(gunDamage, 1);
+                            Destroy(impactEffect, 0.5f);
+                        }
+                        else
+                        {
+                            health.TakeDamage(gunDamage, 0);
+                            Destroy(impactEffect, 0.5f);
+                        }
+                    }
                 }
             }
         }

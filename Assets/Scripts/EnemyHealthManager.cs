@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyHealthManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class EnemyHealthManager : MonoBehaviour
 
     public static bool zombieDead = false;
 
+    public static int numZombiesDead = 0;
 
     private void Start()
     {
@@ -53,13 +55,15 @@ public class EnemyHealthManager : MonoBehaviour
 
     private void HitZombie()
     {
-        navMeshAgent.isStopped = true;
+        //navMeshAgent.isStopped = true;
         anim.SetTrigger("zombieHit");
-        Debug.Log("HitZombie: " + navMeshAgent.isStopped);
+        //Debug.Log("HitZombie: " + navMeshAgent.isStopped);
     }
 
     public void Die()
     {
+        numZombiesDead += 1;
+        gameObject.tag = "IsDead";
         anim.SetTrigger("isDead");
         navMeshAgent.isStopped = true;
         deadSound.Play();

@@ -8,6 +8,8 @@ public class ZombieHitDetection : MonoBehaviour
 {
     int playerHealth = 100;
 
+    double currentHealth;
+
     Animator anim;
 
     NavMeshAgent navMeshAgent;
@@ -21,6 +23,13 @@ public class ZombieHitDetection : MonoBehaviour
 
     public static bool playerDead = false;
 
+    GameObject bloodSpatter;
+
+    GameObject canvas;
+
+    GameObject healthText;
+
+    //GameObject playersPrefab;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,17 +39,20 @@ public class ZombieHitDetection : MonoBehaviour
         //weaponManager = gunPrefab.GetComponent<WeaponManager>();
         //Debug.Log("Weapon Manager: " + weaponManager);
         var player = other.GetComponent<PlayerVoid>();
-        Debug.Log("TriggerEnter()");
+        //playersPrefab = player.gameObject;
+        //Debug.Log("TriggerEnter()");
 
         if (player != null)
         {
-            var tmp = player.gameObject.transform.GetChild(0).gameObject;
+            canvas = player.gameObject.transform.GetChild(0).gameObject;
             //Debug.Log("Tmp Name: " + tmp.name);
-            tmp.SetActive(true);
-            TakeDamage(20);
-            Debug.Log(tmp.name);
-            Debug.Log(tmp.transform.GetChild(0).gameObject.GetComponent<Image>());
-            StartCoroutine(FadeImage(tmp.transform.GetChild(0).gameObject));
+            bloodSpatter = canvas.transform.GetChild(0).gameObject;
+            bloodSpatter.SetActive(true);
+            var tmp = player.transform.parent.gameObject;
+            TakeDamage(20, tmp.transform.parent.gameObject);
+            //Debug.Log(bloodSplatter.name);
+            //Debug.Log(bloodSplatter.GetComponent<Image>());
+            StartCoroutine(FadeImage(bloodSpatter));
         }
     }
 
@@ -54,27 +66,41 @@ public class ZombieHitDetection : MonoBehaviour
         }
     }
 
-
-
-    private void TakeDamage(int damage)
+    private void TakeDamage(int damage, GameObject playerPrefab)
     {
+        var tmp = playerPrefab.transform.GetChild(0).gameObject;
+        tmp = tmp.transform.parent.gameObject;
+        tmp = tmp.transform.parent.gameObject;
+        var tmp2 = tmp.transform.GetChild(1).gameObject;
+        tmp2 = tmp2.transform.GetChild(4).gameObject;
+        tmp2 = tmp2.transform.GetChild(0).gameObject;
+        healthText = tmp2.transform.GetChild(2).gameObject;
+        tmp = tmp.transform.GetChild(2).gameObject;
+        tmp = tmp.transform.GetChild(4).gameObject;
+        //tmp = tmp.transform.GetChild(2).gameObject;
+        //tmp = tmp.transform.GetChild(4).gameObject;
         playerHealth -= damage;
+        //Debug.Log("TakeDamage() CurrentHealth: " + playerHealth);
         if (playerHealth <= 0)
         {
+            healthText.GetComponent<Text>().text = "0";
+            tmp.SetActive(false);
             Die();
         }
         else
         {
-            //img.enabled = true;
-            //Debug.Log("Tiene " + playerHealth + " de vida");
-            //Parte de UI de Sangre
+            string healthStr = playerHealth.ToString("F0");
+            healthText.GetComponent<Text>().text = "" + healthStr;
+            //Debug.Log("Tiene " + currentHealth + " de vida");
         }
     }
 
     private void Die()
     {
+        //AudioSource audio = playersPrefab.GetComponent<AudioSource>();
+        //audio.Stop();
         playerDead = true;
-        Debug.Log("Player Murio");
+        //Debug.Log("Player Murió");
         navMeshAgent.isStopped = true;
         //weaponManager.enabled = false;
         anim.SetBool("idle", true);

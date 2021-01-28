@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 1ebbd27ad88284e468c7783ccc98947b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 180
+  forceTextureCase: -1
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: TheDeadAreComing
+  fontNames:
+  - TheDeadAreComing
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c5c2bb82d1db241449696158f4ed65b9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

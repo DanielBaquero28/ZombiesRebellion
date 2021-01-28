@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ZombieBodyPart
+  - IsDead
   layers:
   - Default
   - TransparentFX
