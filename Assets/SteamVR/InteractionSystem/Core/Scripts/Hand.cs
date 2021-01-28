@@ -128,7 +128,7 @@ namespace Valve.VR.InteractionSystem
         private TextMesh debugText;
         private int prevOverlappingColliders = 0;
 
-        private const int ColliderArraySize = 32;
+        private const int ColliderArraySize = 64;
         private Collider[] overlappingColliders;
 
         private Player playerInstance;

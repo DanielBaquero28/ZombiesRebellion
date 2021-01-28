@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 5e781977ff94d104a9c850f508cb2ea1
+  - enabled: 1
+    path: Assets/Scenes/CyberPunk_City/Scenes/Showcase.unity
+    guid: 171e385b61cafe348a7ead6925076073
+  - enabled: 1
+    path: Assets/Scenes/GameoverMenu.unity
+    guid: 11787f0561846b9468f82e8afbd545e4
   m_configObjects: {}

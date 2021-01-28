@@ -44,9 +44,14 @@ public class EnemyMovement : MonoBehaviour
     {
         if (target != null)
         {
+            if (PlayerHealthManager.playerDead == false)
+            {
+                anim.SetBool("idle", false);
+                anim.SetBool("playerFound", true);
+                navMeshAgent.SetDestination(target.position);
+            }
             //navMeshAgent.enabled = true;
-            anim.SetBool("idle", false);
-            anim.SetBool("playerFound", playerFound);
+            
             //Debug.Log("playerFound Parameter State: " + anim.GetBool("playerFound"));
             //if (zombieHit)
             //{
@@ -54,16 +59,16 @@ public class EnemyMovement : MonoBehaviour
             //}
 
             //Debug.Log("Enemy Health Manager: " + enemyHealthManager.zombieDead);
-            navMeshAgent.SetDestination(target.position);
+            
 
             //Debug.Log("Remaining Distance = " + navMeshAgent.remainingDistance);
             //float speed = navMeshAgent.velocity.magnitude;
             
         }
 
-        if (ZombieHitDetection.playerDead == false)
+        if (PlayerHealthManager.playerDead == false)
         {
-            if (navMeshAgent.remainingDistance <= 1.4f)
+            if (navMeshAgent.remainingDistance <= 1.3f)
             {
                 anim.SetBool("zombieAttack", true);
                 anim.SetBool("playerFound", false);

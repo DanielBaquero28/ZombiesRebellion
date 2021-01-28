@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ZombieBodyPart
   - IsDead
+  - UI Element
   layers:
   - Default
   - TransparentFX

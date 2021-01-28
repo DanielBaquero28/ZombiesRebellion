@@ -19,15 +19,13 @@ public class ZombieInstantiaterManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        Debug.Log("Time: " + timer);
-
-        if (timer > 30f && timer < 30.02f)
+        if (timer > 45f && timer < 45.02f)
         {
             Instantiate(zombie1, zombie1.transform.position, zombie1.transform.rotation);
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
             Instantiate(zombie3, zombie3.transform.position, zombie3.transform.rotation);
         }
-        else if (timer > 60f && timer < 60.02f)
+        else if (timer > 90f && timer < 90.02f)
         {
             Instantiate(zombie1, zombie1.transform.position, zombie1.transform.rotation);
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
@@ -36,7 +34,7 @@ public class ZombieInstantiaterManager : MonoBehaviour
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
             Instantiate(zombie3, zombie3.transform.position, zombie3.transform.rotation);
         }
-        else if (timer > 100f && timer < 100.02f)
+        else if (timer > 150f && timer < 150.02f)
         {
             Instantiate(zombie1, zombie1.transform.position, zombie1.transform.rotation);
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
@@ -48,7 +46,7 @@ public class ZombieInstantiaterManager : MonoBehaviour
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
             Instantiate(zombie3, zombie3.transform.position, zombie3.transform.rotation);
         }
-        else if (timer > 140f && timer < 140.02f)
+        else if (timer > 210f && timer < 210.02f)
         {
             Instantiate(zombie1, zombie1.transform.position, zombie1.transform.rotation);
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
@@ -66,7 +64,7 @@ public class ZombieInstantiaterManager : MonoBehaviour
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
             Instantiate(zombie3, zombie3.transform.position, zombie3.transform.rotation);
         }
-        else if (timer > 180f && timer < 180.02f)
+        else if (timer > 240f && timer < 240.02f)
         {
             Instantiate(zombie1, zombie1.transform.position, zombie1.transform.rotation);
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
@@ -78,7 +76,7 @@ public class ZombieInstantiaterManager : MonoBehaviour
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);
             Instantiate(zombie3, zombie3.transform.position, zombie3.transform.rotation);
         }
-        else if (timer > 200f && timer < 200.02f)
+        else if (timer > 270f && timer < 270.02f)
         {
             Instantiate(zombie1, zombie1.transform.position, zombie1.transform.rotation);
             Instantiate(zombie2, zombie2.transform.position, zombie2.transform.rotation);

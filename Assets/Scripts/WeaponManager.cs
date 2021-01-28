@@ -48,7 +48,6 @@ public class WeaponManager : MonoBehaviour
     {
         //Debug.Log("Trigger Down");
         triggered = 1;
-        fireSound.Play();
         FireGun();
         muzzleFlash.Clear();
         muzzleFlash.Play();
@@ -61,8 +60,9 @@ public class WeaponManager : MonoBehaviour
         Debug.DrawRay(muzzlePoint.position, muzzlePoint.forward * 10, Color.red, 15f);
         Ray ray = new Ray(muzzlePoint.position, muzzlePoint.forward);
         RaycastHit hitInfo;
-        if (ZombieHitDetection.playerDead == false)
+        if (PlayerHealthManager.playerDead == false)
         {
+            fireSound.Play();
             if (Physics.Raycast(ray, out hitInfo, 5000) && hitInfo.collider.gameObject.CompareTag("ZombieBodyPart"))
             {
                 GameObject subGameObject = hitInfo.collider.gameObject;

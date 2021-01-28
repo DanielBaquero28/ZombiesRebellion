@@ -5,7 +5,7 @@ public class CanvasManager : MonoBehaviour
 {
     void Start()
     {
-        Invoke("DisableBeginText", 5f);
+        Invoke("DisableBeginText", 3f);
     }
 
     private void DisableBeginText()

@@ -37,10 +37,12 @@ public class EnemyHealthManager : MonoBehaviour
         if (isHead == 1)
         {
             currentHealth -= damage * 2.5;
+            Debug.Log("Zombie Health: " + currentHealth);
         }
         else
         {
             currentHealth -= damage;
+            Debug.Log("Zombie Health: " + currentHealth);
         }
 
         if (currentHealth <= 0)
